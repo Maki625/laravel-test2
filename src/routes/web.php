@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// 一覧画面
+Route::get('/products', [ProductController::class, 'index']);
+
+// 商品詳細
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
