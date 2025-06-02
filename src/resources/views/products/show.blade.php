@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,6 +10,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>テスト</h1>
+    <h1>show.blade</h1>
 </body>
 </html>
+
+@endsection
