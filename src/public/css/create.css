@@ -1,0 +1,99 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.page-title {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+label {
+    width: auto;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+
+}
+
+.required {
+    margin-right: 8px;
+    padding: 8px;
+    padding: 8px 0;
+    width: 48px;
+    display: inline-block;
+    text-align: center;
+    background: red;
+    color: #fff;
+    font-size: 14px;
+}
+
+.required-message {
+    margin-right: 8px;
+    color: red;
+    font-size: 14px;
+}
+
+input[type="text"],
+textarea {
+    width: 80%;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #f4f4f4;
+    font-size: 14px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+select {
+    width: 80%;
+    padding: 8px 16px;
+    background-color: #F4F4F4;
+    color: #BEB1A6;
+}
+
+textarea {
+    padding: 8px 16px;
+    height: 144px;
+    background-color: #F4F4F4;
+}
+
+.season-inputs {
+    display: flex;
+}
+
+.season-inputs label {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+button {
+    background-color: yellow;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto 0;
+}
+
+/* エラーメッセージのスタイル */
+.error-message {
+    margin-top: 8px;
+    color: #FF9494;
+    grid-column: 2;
+}

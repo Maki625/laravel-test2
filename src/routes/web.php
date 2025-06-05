@@ -24,6 +24,9 @@ Route::get('/products', [ProductController::class, 'index']);
 // 商品登録
 Route::get('/products/register', [ProductController::class, 'create'])->name('products.create');
 
+// 登録内容の保存
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
 // 商品検索
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 
