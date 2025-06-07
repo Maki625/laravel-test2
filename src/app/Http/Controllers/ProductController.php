@@ -13,7 +13,7 @@ class ProductController extends Controller
     // 商品一覧表示
     public function index()
     {
-        $products = Product::all();
+        $products = Product::paginate(6);
         return view('products.index', compact('products'));
     }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
     $keyword = $request->input('keyword');
-    $products = Product::where('name', 'like', "%{$keyword}%")->get();
+    $products = Product::where('name', 'like', "%{$keyword}%")->paginate(6);
 
     return view('products.index', compact('products'));
     }

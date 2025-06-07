@@ -5,6 +5,14 @@
 <link href="{{ asset('css/index.css') }}" rel="stylesheet">
 
 <body>
+<h2 class="page-title">商品一覧</h2>
+
+<div class="container">
+    <form action="{{ route('products.search') }}"  method="GET" class="search-form">
+        <input type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
+        <button type="submit" name="search" class="search-btn" value="search">検索</button>
+    </form>
+
     <div class="wrapper">
     <div class="card">
         <div class="fruit-img">
@@ -106,5 +114,10 @@
         </div>
     </div>
 
+    <div class="pagination-wrapper">
+        {{ $products->appends(request()->query())->links() }}
+    </div>
+
+</div>
 </body>
 @endsection
