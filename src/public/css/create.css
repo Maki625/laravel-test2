@@ -44,29 +44,41 @@ label {
     font-size: 14px;
 }
 
-input[type="text"],
-textarea {
-    width: 80%;
+input[type="text"] {
+    width: 100%;
     flex: 1;
     padding: 10px;
     border: none;
-    background-color: #f4f4f4;
+    background-color: #fff;
     font-size: 14px;
     box-sizing: border-box;
     gap: 10px;
 }
 
 select {
-    width: 80%;
-    padding: 8px 16px;
-    background-color: #F4F4F4;
+    width: 100%;
+    padding: 8px 20px;
+    gap: 20px;
+    background-color: #fff;
     color: #BEB1A6;
 }
 
 textarea {
-    padding: 8px 16px;
-    height: 144px;
-    background-color: #F4F4F4;
+    width: 100%;
+    flex: 1;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    gap: 10px;
+    padding: 30px 5px;
+    background-color: #fff;
+}
+
+
+.preview-img {
+    max-width: 400px;
+    margin: 10px 0 10px 0;
+    display: none;
 }
 
 .season-inputs {
@@ -79,15 +91,33 @@ textarea {
     margin-right: 20px;
 }
 
-button {
-    background-color: yellow;
+.button-wrapper {
+    display: flex;
+    gap: 13px;
+    /* ボタンの間隔、調整してね */
+    justify-content: center;
+    /* 真ん中に寄せるなら */
+    margin-top: 30px;
+}
+
+.return-btn,
+.send-btn {
     color: #000;
     border: none;
-    padding: 12px 30px;
+    border-radius: 5px;
+    padding: 10px 65px;
     font-size: 16px;
     cursor: pointer;
-    display: block;
-    margin: 30px auto 0;
+    /* display: flex;
+    margin: 30px auto 0; */
+}
+
+.return-btn {
+    background-color: grey;
+}
+
+.send-btn {
+    background-color: orange;
 }
 
 /* エラーメッセージのスタイル */

@@ -28,7 +28,7 @@ class StoreProductRequest extends FormRequest
             'price'       => 'required|integer|min:0|max:10000',
             'season'      => 'required|string',
             'description' => 'required|string|max:120',
-            'image'       => 'required|mimes:jpeg,png',
+            'image'       => 'nullable|mimes:jpeg,png',
         ];
     }
 
@@ -51,7 +51,6 @@ class StoreProductRequest extends FormRequest
             'description.max'      => '120文字以内で入力してください',
 
             // 商品画像
-            'image.required'       => '商品画像を登録してください',
             'image.mimes'          => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }

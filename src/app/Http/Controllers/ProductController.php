@@ -33,33 +33,38 @@ class ProductController extends Controller
     // 商品登録
     public function store(StoreProductRequest $request)
     {
-    $validated = $request->validated();
+        $input= [
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+        ];
 
-    // 画像保存
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('public/images');
-        $validated['image'] = str_replace('public/', 'storage/', $path);
-    }
+        // 画像保存
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $input['image'] = str_replace('public/', 'storage/', $path);
+        }
 
-    Product::create($validated);
-    return redirect()->route('products.index');
+        Product::create($input);
+
+        return redirect('/products');
     }
 
     // 商品更新
     public function update(UpdateProductRequest $request, $productId)
     {
-    $product = Product::findOrFail($productId);
-    $validated = $request->validated();
+        $product = Product::findOrFail($productId);
+        $validated = $request->validated();
 
-    // 画像保存
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('public/images');
-        $validated['image'] = str_replace('public/', 'storage/', $path);
-    }
+        // 画像保存
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $validated['image'] = str_replace('public/', 'storage/', $path);
+        }
 
-    $product->update($validated);
+        $product->update($validated);
 
-    return redirect()->route('products.show', $product->id);
+        return redirect()->route('products.show', $product->id);
     }
 
     // 商品検索処理

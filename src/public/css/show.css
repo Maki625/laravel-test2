@@ -1,0 +1,104 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+}
+
+label {
+    width: auto;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    white-space: nowrap;
+
+}
+
+input[type="text"] {
+    width: 100%;
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+select {
+    width: 100%;
+    padding: 8px 20px;
+    gap: 20px;
+    background-color: #fff;
+    color: #BEB1A6;
+}
+
+textarea {
+    width: 100%;
+    flex: 1;
+    border: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    gap: 10px;
+    padding: 30px 5px;
+    background-color: #fff;
+}
+
+
+.preview-img {
+    max-width: 400px;
+    margin: 10px 0 10px 0;
+    display: none;
+}
+
+.season-inputs {
+    display: flex;
+}
+
+.season-inputs label {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.button-wrapper {
+    display: flex;
+    gap: 13px;
+    /* ボタンの間隔、調整してね */
+    justify-content: center;
+    /* 真ん中に寄せるなら */
+    margin-top: 30px;
+}
+
+.return-btn,
+.store-btn {
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 65px;
+    font-size: 16px;
+    cursor: pointer;
+    /* display: flex;
+    margin: 30px auto 0; */
+}
+
+.return-btn {
+    background-color: grey;
+}
+
+.store-btn {
+    background-color: orange;
+}
+
+/* エラーメッセージのスタイル */
+.error-message {
+    margin-top: 8px;
+    color: #FF9494;
+    grid-column: 2;
+}
