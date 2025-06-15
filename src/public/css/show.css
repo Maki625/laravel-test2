@@ -31,14 +31,6 @@ input[type="text"] {
     gap: 10px;
 }
 
-select {
-    width: 100%;
-    padding: 8px 20px;
-    gap: 20px;
-    background-color: #fff;
-    color: #BEB1A6;
-}
-
 textarea {
     width: 100%;
     flex: 1;
@@ -57,35 +49,39 @@ textarea {
     display: none;
 }
 
-.season-inputs {
-    display: flex;
-}
-
-.season-inputs label {
+label.checkbox {
     display: flex;
     align-items: center;
     margin-right: 20px;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.delete-form {
+    margin-left: auto;
+}
+
 .button-wrapper {
     display: flex;
-    gap: 13px;
-    /* ボタンの間隔、調整してね */
-    justify-content: center;
-    /* 真ん中に寄せるなら */
-    margin-top: 30px;
+        gap: 13px;
+        margin: 0 auto;
 }
 
 .return-btn,
 .store-btn {
+    text-decoration: none;
     color: #000;
     border: none;
     border-radius: 5px;
     padding: 10px 65px;
     font-size: 16px;
     cursor: pointer;
-    /* display: flex;
-    margin: 30px auto 0; */
 }
 
 .return-btn {

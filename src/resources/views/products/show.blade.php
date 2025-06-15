@@ -20,7 +20,7 @@
 <!-- 商品名 -->
 <div class="form-group">
                 <label>商品名 </label>
-                <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}">
+                <input type="text" name="name" placeholder="商品名を入力" value="{{ old('name', $product->name) }}">
             <p class="error-message">
           @error('name')
           {{ $message }}
@@ -31,7 +31,7 @@
 <!-- 値段 -->
 <div class="form-group">
                 <label>値段</label>
-                <input type="text" name="price" placeholder="値段を入力" value="{{ old('price') }}">
+                <input type="text" name="price" placeholder="値段を入力" value="{{ old('price', $product->price) }}">
             <div><p class="error-message">
           @error('price')
           {{ $message }}
@@ -42,20 +42,26 @@
 <!-- 商品画像 -->
 <div class="form-group">
   <label>商品画像</label>
-  <img id="imagePreview" alt="画像プレビュー" class="preview-img">
 
-  <input type="file" name="image">
-
+  <!-- 登録済みの画像を表示 -->
+  @if ($product->image)
+    <img src="{{ asset($product->image) }}" alt="商品画像">
+  @else
+    <p>画像は登録されていません</p>
+  @endif
+  <!-- 画像アップロード用 -->
+  <input type="file" name="image" onchange="previewImage(event)">
+</div>
 
 <!-- 季節 -->
   <div class="form-group">
-                <label>季節</label>
-                <div class="season-inputs">
-                    <label><input type="radio" name="season" value="1" {{ old('season') === '1' ? 'checked' : '' }}> 春</label>
-                    <label><input type="radio" name="season" value="2" {{ old('season') === '2' ? 'checked' : '' }}> 夏</label>
-                    <label><input type="radio" name="season" value="3" {{ old('season') === '3' ? 'checked' : '' }}> 秋</label>
-                    <label><input type="radio" name="season" value="4" {{ old('season') === '4' ? 'checked' : '' }}> 冬</label>
-                </div>
+  @foreach ($seasons as $season)
+    <label class="checkbox">
+        <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
+            {{ $product->seasons->contains($season->id) ? 'checked' : '' }}>
+        {{ $season->name }}
+    </label>
+@endforeach
         </div>
         <p class="error-message">
           @error('season')
@@ -67,7 +73,7 @@
   <!-- 商品説明 -->
     <div class="form-group">
     <label>商品説明</label>
-    <textarea name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
+    <textarea name="description" placeholder="商品の説明を入力">{{ old('description', $product->description) }}</textarea>
     <p class="error-message">
           @error('description')
           {{ $message }}
@@ -75,19 +81,25 @@
     </p>
 </div>
 
-    <!-- 商品変更ボタン -->
-    <div class="button-wrapper">
-    <button type="submit" name="return" class="return-btn" value="back">戻る</button>
+    <!-- ボタン -->
+  <div class="button-container">
+  <div class="button-wrapper">
+    <a href="/products" class="return-btn">戻る</a>
 
     <button type="submit" name="store" class="store-btn" value="store">変更を保存
     </button>
-
-    <button type="submit" name="delete" class="delete-btn" value="destroy">ゴミ箱UIつける</button>
-    </div>
-</div>
-
+  </div>
 </form>
 
+    <form method="POST" action="/products/{{ $product->id }}/delete" >
+    @csrf
+    @method('DELETE')
+    <input type="hidden" name="id" value="{{ $product->id }}">
+    <input class="delete-btn" type="submit" value="削除UI">
+    </form>
+</div>
+
+<!-- プレビュー用のスクリプト -->
 <script>
   const input = document.querySelector('input[type="file"]');
   const preview = document.getElementById('imagePreview');

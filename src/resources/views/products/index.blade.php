@@ -6,8 +6,8 @@
 
 <h2 class="page-title">商品一覧</h2>
 
-<form method="GET" action="{{ route('products.create') }}" ></form>
-<button type="submit" name="create" class="create-btn" value="create">+ 商品を追加</button>
+<form method="GET" action="{{ route('products.create') }}" >
+<button type="submit" name="create" class="create-btn" value="create">+ 商品を追加</button></form>
 
 <div class="container">
     <form action="{{ route('products.search') }}"  method="GET" class="search-form">
@@ -15,20 +15,21 @@
         <button type="submit" name="search" class="search-btn" value="search">検索</button>
     </form>
 
-    <h3 class="price-search">価格順で表示</h3>
-    <input type ="select" name="select" value="">
+    <label class="search-form__label" for="">価格順で表示</label>
 
     <div class="wrapper">
 @foreach ($products as $product)
+    <a href="{{ route('products.show', $product->id) }}" class="card-link">
     <div class="card">
         <div class="fruit-img">
-            <img src="{{ asset('image/' . $product->image) }}" alt="{{ $product->name }}">
+            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
         </div>
         <div class="text-box">
             <span class="name">{{ $product->name }}</span>
             <span class="price">¥{{ $product->price }}</span>
         </div>
     </div>
+    </a>
 @endforeach
 </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Season;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +22,9 @@ class ProductController extends Controller
     public function show($productId)
     {
         $product = Product::find($productId);
-        return view('products.show', compact('product'));
+        $seasons = Season::all();
+
+        return view('products.show', compact('product', 'seasons'));
     }
 
     // 商品登録画面の表示
@@ -64,6 +67,8 @@ class ProductController extends Controller
 
         $product->update($validated);
 
+        $product->seasons()->sync($request->input('seasons', []));
+
         return redirect()->route('products.show', $product->id);
     }
 
@@ -82,6 +87,6 @@ class ProductController extends Controller
     $product = Product::findOrFail($productId);
     $product->delete();
 
-    return redirect()->route('products.index');
+    return redirect('/products');
     }
 }

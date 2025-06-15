@@ -34,7 +34,7 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 Route::put('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');
 
 // 商品削除
-Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::delete('/products/{productId}/delete', [ProductController::class, 'destroy']);
 
 // 商品詳細
 Route::get('/products/{productId}', [ProductController::class, 'show'])->name('products.show');

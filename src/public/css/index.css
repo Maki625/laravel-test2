@@ -49,17 +49,26 @@ img {
     height: 100%;
 }
 
-.card {
+
+.card-link {
     width: 25%;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card {
     cursor: pointer;
     border: 1px solid #e9eaea;
     border-radius: 3px;
+    height: 100%;
 }
 
 .text-box {
     padding: 10px 8px;
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
 }
 
 .fruit-img {
