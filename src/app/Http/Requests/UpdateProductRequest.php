@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Product;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -23,12 +24,18 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()
     {
+        $productId = $this->route('productId');
+        $product = Product::find($productId);
+
         return [
             'name'        => 'required',
             'price'       => 'required|integer|min:0|max:10000',
-            'season'      => 'required',
+            'seasons'      => 'required|array|min:1',
+            'seasons.*'   => 'integer|exists:seasons,id',
             'description' => 'required|string|max:120',
-            'image'       => 'required|mimes:jpeg,png',
+            'image'       => $product && $product->image
+                            ? 'nullable|mimes:jpeg,png'
+                            : 'required|mimes:jpeg,png',
         ];
     }
 
@@ -39,7 +46,7 @@ class UpdateProductRequest extends FormRequest
             'price.required'       => '値段を入力してください',
             'price.numeric'        => '数値で入力してください',
             'price.max'            => '0~10000円以内で入力してください',
-            'season.required'      => '季節を選択してください',
+            'seasons.required'      => '季節を選択してください',
             'description.required' => '商品説明を入力してください',
             'description.max'      => '120文字以内で入力してください',
             'image.required'       => '商品画像を登録してください',

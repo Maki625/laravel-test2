@@ -26,7 +26,8 @@ class StoreProductRequest extends FormRequest
         return [
             'name'        => 'required|string',
             'price'       => 'required|integer|min:0|max:10000',
-            'season'      => 'required|string',
+            'seasons'      => 'required|array|min:1',
+            'seasons.*'   => 'exists:seasons,id',
             'description' => 'required|string|max:120',
             'image'       => 'nullable|mimes:jpeg,png',
         ];
@@ -44,7 +45,8 @@ class StoreProductRequest extends FormRequest
             'price.max'            => '0~10000円以内で入力してください',
 
             // 季節
-            'season.required'      => '季節を選択してください',
+            'seasons.required'      => '季節を選択してください',
+            'seasons.*.exists' => '選択された季節が不正です',
 
             // 商品説明
             'description.required' => '商品説明を入力してください',

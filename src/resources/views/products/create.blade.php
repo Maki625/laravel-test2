@@ -52,16 +52,19 @@
 
 <!-- 季節 -->
   <div class="form-group">
-                <label>季節 <span class="required">必須</span> <span class="required-message">複数選択可</span></label>
-                <div class="season-inputs">
-                    <label><input type="radio" name="season" value="1" {{ old('season') === '1' ? 'checked' : '' }}> 春</label>
-                    <label><input type="radio" name="season" value="2" {{ old('season') === '2' ? 'checked' : '' }}> 夏</label>
-                    <label><input type="radio" name="season" value="3" {{ old('season') === '3' ? 'checked' : '' }}> 秋</label>
-                    <label><input type="radio" name="season" value="4" {{ old('season') === '4' ? 'checked' : '' }}> 冬</label>
-                </div>
-        </div>
+  <label>季節 <span class="required">必須</span> <span class="required-message">複数選択可</span></label>
+    <div class="season-inputs">
+        @foreach ($seasons as $season)
+            <label>
+                <input type="checkbox" name="seasons[]" value="{{ $season->id }}" 
+                    {{ (is_array(old('seasons')) && in_array($season->id, old('seasons'))) ? 'checked' : '' }}>
+                {{ $season->name }}
+            </label>
+        @endforeach
+    </div>
+  </div>
         <p class="error-message">
-          @error('season')
+          @error('seasons')
           {{ $message }}
           @enderror
         </p>

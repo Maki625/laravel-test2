@@ -30,7 +30,9 @@ class ProductController extends Controller
     // 商品登録画面の表示
     public function create()
     {
-        return view('products.create');
+        $seasons = Season::all();
+
+        return view('products.create', compact('seasons'));
     }
 
     // 商品登録
@@ -48,7 +50,12 @@ class ProductController extends Controller
             $input['image'] = str_replace('public/', 'storage/', $path);
         }
 
-        Product::create($input);
+        $product = Product::create($input);
+
+        // 季節を中間テーブルに保存
+        if ($request->has('seasons')) {
+            $product->seasons()->attach($request->seasons);
+        }
 
         return redirect('/products');
     }
@@ -69,7 +76,7 @@ class ProductController extends Controller
 
         $product->seasons()->sync($request->input('seasons', []));
 
-        return redirect()->route('products.show', $product->id);
+        return redirect('/products');
     }
 
     // 商品検索処理

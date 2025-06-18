@@ -14,8 +14,9 @@
 </ul>
 @endif
 
-<form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data" >
+<form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data" >
   @csrf
+  @method('PUT')
 
 <!-- 商品名 -->
 <div class="form-group">
@@ -55,19 +56,21 @@
 
 <!-- 季節 -->
   <div class="form-group">
-  @foreach ($seasons as $season)
+    <div class="season-checkboxes">
+    @foreach ($seasons as $season)
     <label class="checkbox">
         <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
             {{ $product->seasons->contains($season->id) ? 'checked' : '' }}>
         {{ $season->name }}
     </label>
-@endforeach
-        </div>
-        <p class="error-message">
+    @endforeach
+    </div>
+
+    <p class="error-message">
           @error('season')
           {{ $message }}
           @enderror
-        </p>
+    </p>
 </div>
 
   <!-- 商品説明 -->
@@ -95,7 +98,9 @@
     @csrf
     @method('DELETE')
     <input type="hidden" name="id" value="{{ $product->id }}">
-    <input class="delete-btn" type="submit" value="削除UI">
+    <button type="submit" class="delete-btn">
+        <img src="{{ asset('images/trash.png') }}" alt="削除" style="width:20px; height:20px;">
+    </button>
     </form>
 </div>
 
