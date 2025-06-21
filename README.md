@@ -28,6 +28,6 @@
 
 
 ## URL  
-・開発環境：http://localhost/
-・もぎたてトップページ：http://localhost/products
+・開発環境：http://localhost/  
+・もぎたてトップページ：http://localhost/products  
 ・phpMyAdmin:http://localhost:8080/
