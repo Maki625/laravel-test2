@@ -98,7 +98,7 @@
     @method('DELETE')
     <input type="hidden" name="id" value="{{ $product->id }}">
     <button type="submit" class="delete-btn">
-        <img src="{{ asset('images/trash.png') }}" alt="削除" style="width:20px; height:20px;">
+        <img src="{{ asset('images/trash.png') }}" alt="削除" width="50">
     </button>
     </form>
 </div>

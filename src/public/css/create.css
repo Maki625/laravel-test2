@@ -94,9 +94,7 @@ textarea {
 .button-wrapper {
     display: flex;
     gap: 13px;
-    /* ボタンの間隔、調整してね */
     justify-content: center;
-    /* 真ん中に寄せるなら */
     margin-top: 30px;
 }
 
@@ -108,8 +106,6 @@ textarea {
     padding: 10px 65px;
     font-size: 16px;
     cursor: pointer;
-    /* display: flex;
-    margin: 30px auto 0; */
 }
 
 .return-btn {

@@ -12,13 +12,14 @@
     </form>
 </div>
 
+<main style="display:flex;">
 <div class="container">
     <form action="{{ route('products.search') }}"  method="GET" class="search-form">
         <input type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
         <button type="submit" name="search" class="search-btn" value="search">検索</button>
 
     <label class="search-form__label" for="">価格順で表示</label>
-    <!-- ↕️並び替え -->
+    <!-- 並び替え -->
     <select name="sort" onchange="this.form.submit()">
         <option value="">価格で並べ替え</option>
         <option value="price_desc" {{ request('sort') == 'price_desc' ? 'selected' : '' }}>高い順に表示</option>
@@ -26,7 +27,7 @@
     </select>
     </form>
 
-    <!-- 🏷タグ表示 -->
+    <!-- タグ表示 -->
 @if(request('keyword') || request('sort'))
     <div class="filter-tags" style="margin-top: 10px;">
         @if(request('keyword'))
@@ -45,7 +46,7 @@
 </div>
 
 
-    <div class="wrapper">
+<div class="wrapper">
 @foreach ($products as $product)
     <a href="{{ route('products.show', $product->id) }}" class="card-link">
     <div class="card">
@@ -60,6 +61,7 @@
     </a>
 @endforeach
 </div>
+</main>
 
     <div class="pagination-wrapper">
         {{ $products->appends(request()->query())->links() }}

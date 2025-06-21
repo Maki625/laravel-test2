@@ -16,19 +16,19 @@ class ProductController extends Controller
 {
     $query = Product::query();
 
-    // 🔍検索キーワードで絞り込み
+    //検索キーワードで絞り込み
     if ($request->filled('keyword')) {
         $query->where('name', 'like', '%' . $request->keyword . '%');
     }
 
-    // ↕️並び替え
+    // 並び替え
     if ($request->sort === 'price_desc') {
         $query->orderBy('price', 'desc');
     } elseif ($request->sort === 'price_asc') {
         $query->orderBy('price', 'asc');
     }
 
-    // 📄ページネーション（6件ずつ）
+    //ページネーション（6件ずつ）
     $products = $query->paginate(6)->appends($request->query());
 
     return view('products.index', compact('products'));
@@ -104,17 +104,25 @@ class ProductController extends Controller
         if ($request->filled('keyword')) {
             $query->where('name', 'like', '%' . $request->keyword . '%');
         }
-    
+
         //並び替え
         if ($request->sort === 'price_desc') {
             $query->orderBy('price', 'desc');
         } elseif ($request->sort === 'price_asc') {
             $query->orderBy('price', 'asc');
         }
-    
+
         //ページネーション + クエリ維持
         $products = $query->paginate(6)->appends($request->query());
-    
+
         return view('products.index', compact('products'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $product = Product::find($request->productId);
+        $product->delete();
+
+        return redirect('/products');
     }
 }
