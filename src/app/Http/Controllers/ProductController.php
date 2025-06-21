@@ -12,11 +12,27 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     // 商品一覧表示
-    public function index()
-    {
-        $products = Product::paginate(6);
-        return view('products.index', compact('products'));
+    public function index(Request $request)
+{
+    $query = Product::query();
+
+    // 🔍検索キーワードで絞り込み
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
     }
+
+    // ↕️並び替え
+    if ($request->sort === 'price_desc') {
+        $query->orderBy('price', 'desc');
+    } elseif ($request->sort === 'price_asc') {
+        $query->orderBy('price', 'asc');
+    }
+
+    // 📄ページネーション（6件ずつ）
+    $products = $query->paginate(6)->appends($request->query());
+
+    return view('products.index', compact('products'));
+}
 
     // 商品詳細表示
     public function show($productId)
@@ -82,18 +98,23 @@ class ProductController extends Controller
     // 商品検索処理
     public function search(Request $request)
     {
-    $keyword = $request->input('keyword');
-    $products = Product::where('name', 'like', "%{$keyword}%")->paginate(6);
+        $query = Product::query();
 
-    return view('products.index', compact('products'));
-    }
-
-    // 商品削除処理
-    public function destroy($productId)
-    {
-    $product = Product::findOrFail($productId);
-    $product->delete();
-
-    return redirect('/products');
+        //検索キーワード
+        if ($request->filled('keyword')) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+    
+        //並び替え
+        if ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        } elseif ($request->sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        }
+    
+        //ページネーション + クエリ維持
+        $products = $query->paginate(6)->appends($request->query());
+    
+        return view('products.index', compact('products'));
     }
 }

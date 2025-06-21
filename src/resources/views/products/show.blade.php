@@ -18,6 +18,18 @@
   @csrf
   @method('PUT')
 
+<!-- 商品画像 -->
+<div class="form-group">
+  <!-- 登録済みの画像を表示 -->
+  @if ($product->image)
+    <img src="{{ asset($product->image) }}" alt="商品画像">
+  @else
+    <p>画像は登録されていません</p>
+  @endif
+  <!-- 画像アップロード用 -->
+  <input type="file" name="image" onchange="previewImage(event)">
+</div>
+
 <!-- 商品名 -->
 <div class="form-group">
                 <label>商品名 </label>
@@ -40,29 +52,16 @@
         </p></div>
 </div>
 
-<!-- 商品画像 -->
-<div class="form-group">
-  <label>商品画像</label>
-
-  <!-- 登録済みの画像を表示 -->
-  @if ($product->image)
-    <img src="{{ asset($product->image) }}" alt="商品画像">
-  @else
-    <p>画像は登録されていません</p>
-  @endif
-  <!-- 画像アップロード用 -->
-  <input type="file" name="image" onchange="previewImage(event)">
-</div>
-
 <!-- 季節 -->
   <div class="form-group">
     <div class="season-checkboxes">
+    <label>季節</label>
     @foreach ($seasons as $season)
-    <label class="checkbox">
+    <div class="checkbox">
         <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
             {{ $product->seasons->contains($season->id) ? 'checked' : '' }}>
         {{ $season->name }}
-    </label>
+    </div>
     @endforeach
     </div>
 

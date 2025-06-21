@@ -4,6 +4,10 @@
     padding: 40px 20px;
     box-sizing: border-box;
 }
+.image {
+    max-width: 50px;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -42,18 +46,11 @@ textarea {
     background-color: #fff;
 }
 
-
-.preview-img {
-    max-width: 400px;
-    margin: 10px 0 10px 0;
-    display: none;
-}
-
 .season-checkboxes {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    /* 要素間のスペースを空ける */ }
+}
 
 .checkbox {
     display: flex;
@@ -75,8 +72,8 @@ textarea {
 
 .button-wrapper {
     display: flex;
-        gap: 13px;
-        margin: 0 auto;
+    gap: 13px;
+    margin: 0 auto;
 }
 
 .return-btn,

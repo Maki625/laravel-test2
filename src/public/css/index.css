@@ -1,16 +1,17 @@
+.title-and-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+}
+
 .page-title {
     font-size: 24px;
     margin: 30px 30px;
 }
 
-.container {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
 .create-btn {
-    margin: 20px auto 0;
+    margin-left: auto;
     padding: 10px 30px;
     cursor: pointer;
     color: #000;
@@ -19,22 +20,50 @@
     border-radius: 5px;
 }
 
+.container {
+    flex-direction: column;
+}
+
 .search-form {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: 25%;
-    padding: 20px;
-    box-sizing: border-box;
+    max-width: 300px;
+    margin: 10px 20px;
+    padding: 30px;
+    align-items: flex-start;
 }
 
 .search-btn {
-    margin: 20px auto 0;
-    padding: 10px 30px;
+    margin-top: 30px;
+    padding: 10px 65px;
     cursor: pointer;
     color: #000;
     border: none;
     background-color: yellow;
     border-radius: 5px;
+    align-items: flex-start;
+}
+
+.search-form__label {
+    margin: 20px 0;
+    flex-direction: column;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 10px 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+.close-btn {
+    margin-left: 8px;
+    background-color: yellow;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .wrapper {
@@ -42,6 +71,8 @@
     width: 70%;
     gap: 20px;
     flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: auto;
 }
 
 img {
@@ -51,7 +82,7 @@ img {
 
 
 .card-link {
-    width: 25%;
+    width: 30%;
     text-decoration: none;
     color: inherit;
     display: block;
